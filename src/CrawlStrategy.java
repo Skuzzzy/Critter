@@ -8,4 +8,5 @@ public interface CrawlStrategy {
     public ArrayList<URLWrapper> getSeedURLS();
     public String getJsoupLinkSelector();
     public String getRegexSelector();
+    public Parser getMatchingParser();
 }

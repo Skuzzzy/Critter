@@ -39,4 +39,8 @@ public class ExciteCrawl implements CrawlStrategy {
         return "http://www.excite.co.jp/News/.++";
     }
 
+    public Parser getMatchingParser() {
+        return new ExciteParser();
+    }
+
 }

@@ -19,7 +19,7 @@ public class Crawler {
     public Crawler() {
         alreadyTouched = new Hashtable<String,URLWrapper>();
         crawlInfo = new ExciteCrawl();
-        parser = new ExciteParser();
+        parser = crawlInfo.getMatchingParser();
 
         links = new LinkedList();
         links.addAll(crawlInfo.getSeedURLS());
@@ -88,4 +88,5 @@ public class Crawler {
         }
         return links;
     }
+
 }
