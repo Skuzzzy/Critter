@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class MainichiCrawl implements CrawlStrategy {
     private String[] acceptedProtocols = {"http","https"};
     private String[] seedLinks = {
-            "http://mainichi.jp/select/",
             "http://mainichi.jp/select/shakai/",
             "http://mainichi.jp/select/seiji/",
             "http://mainichi.jp/select/biz/",

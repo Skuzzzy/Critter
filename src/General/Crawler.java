@@ -55,7 +55,12 @@ public class Crawler {
             }
 
             ArrayList<URLWrapper> documentsToParse = getLinksFromURL(currentURL);
-            System.out.println(documentsToParse.size());
+
+
+            // Another horrible hack
+            for(int i=0; i<documentsToParse.size(); i++) {
+                documentsToParse.set(i,new URLWrapper(documentsToParse.get(i).getFullURL().replaceFirst("/news/m","/news/")));
+            }
 
             for(URLWrapper document : documentsToParse) {
                 if( ! alreadyProcessed.contains(document.getFullURL()) ) {

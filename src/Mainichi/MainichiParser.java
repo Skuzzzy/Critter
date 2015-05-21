@@ -14,7 +14,7 @@ import java.io.*;
  */
 
 public class MainichiParser implements Parser {
-    private static final String selector = "div.NewsBody";
+    private static final String selector = "Div.NewsBody";
     private int docnum;
 
     public MainichiParser() {
