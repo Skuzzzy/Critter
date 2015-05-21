@@ -11,7 +11,10 @@ public class MainichiCrawl implements CrawlStrategy {
     private String[] seedLinks = {
             "http://mainichi.jp/select/",
             "http://mainichi.jp/select/shakai/",
-            "http://mainichi.jp/select/seiji/"
+            "http://mainichi.jp/select/seiji/",
+            "http://mainichi.jp/select/biz/",
+            "http://mainichi.jp/select/world/",
+            "http://mainichi.jp/select/science/"
     };
 
     public MainichiCrawl() {
