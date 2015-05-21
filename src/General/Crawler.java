@@ -1,3 +1,5 @@
+package General;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -10,14 +12,17 @@ import java.util.*;
  * Created by Daniel on 5/20/2015.
  */
 public class Crawler {
-    private Queue links; // URL objects
+    private Queue links; // General.URLWrapper objects
     private HashSet<String> alreadyTouched;
+    private HashSet<String> alreadyProcessed;
     private CrawlStrategy crawlInfo;
     private Parser parser;
 
-    public Crawler() {
+    public Crawler(CrawlStrategy cInfo) {
         alreadyTouched = new HashSet<String>();
-        crawlInfo = new ExciteCrawl();
+        alreadyProcessed = new HashSet<String>();
+
+        crawlInfo = cInfo;
         parser = crawlInfo.getMatchingParser();
 
         links = new LinkedList();
@@ -50,12 +55,16 @@ public class Crawler {
             }
 
             ArrayList<URLWrapper> documentsToParse = getLinksFromURL(currentURL);
+            System.out.println(documentsToParse.size());
 
             for(URLWrapper document : documentsToParse) {
-                parser.parsePage(document);
-                alreadyTouched.add(currentURL.getFullURL());
+                if( ! alreadyProcessed.contains(document.getFullURL()) ) {
+                    parser.parsePage(document);
+                    alreadyProcessed.add(document.getFullURL());
+                }
             }
 
+            alreadyTouched.add(currentURL.getFullURL());
 
         }
     }
@@ -76,7 +85,7 @@ public class Crawler {
             Elements linkBlocks = doc.select(crawlInfo.getJsoupLinkSelector());
             for(Element linkB : linkBlocks) {
                 String extractedURL = linkB.attr("href");
-                if(extractedURL.matches(crawlInfo.getRegexSelector())) {
+                if(extractedURL.matches(crawlInfo.getRegexSelector()) && extractedURL.endsWith(".html") && extractedURL.contains("/news/")) { // Todo remove horrible hacks
                     links.add(new URLWrapper(extractedURL));
                 }
 

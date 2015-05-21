@@ -1,3 +1,6 @@
+package Mainichi;
+
+import General.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -10,11 +13,12 @@ import java.io.OutputStreamWriter;
 /**
  * Created by Daniel on 5/20/2015.
  */
-public class ExciteParser implements Parser{
-    private static final String selector = "div.story";
+
+public class MainichiParser implements Parser {
+    private static final String selector = "div.NewsBody";
     private int docnum;
 
-    public ExciteParser() {
+    public MainichiParser() {
         docnum = 0;
     }
 
