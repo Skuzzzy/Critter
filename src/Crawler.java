@@ -4,7 +4,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.*;
 
 /**
@@ -12,12 +11,12 @@ import java.util.*;
  */
 public class Crawler {
     private Queue links; // URL objects
-    private Hashtable<String,URLWrapper> alreadyTouched;
+    private HashSet<String> alreadyTouched;
     private CrawlStrategy crawlInfo;
     private Parser parser;
 
     public Crawler() {
-        alreadyTouched = new Hashtable<String,URLWrapper>();
+        alreadyTouched = new HashSet<String>();
         crawlInfo = new ExciteCrawl();
         parser = crawlInfo.getMatchingParser();
 
@@ -54,7 +53,7 @@ public class Crawler {
 
             for(URLWrapper document : documentsToParse) {
                 parser.parsePage(document);
-                alreadyTouched.put(currentURL.getFullURL(),currentURL);
+                alreadyTouched.add(currentURL.getFullURL());
             }
 
 
