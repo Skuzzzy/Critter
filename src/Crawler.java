@@ -14,7 +14,7 @@ public class Crawler {
     private Queue links; // URL objects
     private Hashtable<String,URLWrapper> alreadyTouched;
     private CrawlStrategy crawlInfo;
-    private ExciteParser parser; // Todo generalize this
+    private Parser parser;
 
     public Crawler() {
         alreadyTouched = new Hashtable<String,URLWrapper>();
@@ -53,7 +53,7 @@ public class Crawler {
             ArrayList<URLWrapper> documentsToParse = getLinksFromURL(currentURL);
 
             for(URLWrapper document : documentsToParse) {
-                parser.ParsePage(document);
+                parser.parsePage(document);
                 alreadyTouched.put(currentURL.getFullURL(),currentURL);
             }
 

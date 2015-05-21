@@ -8,13 +8,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by Daniel on 5/20/2015.
  */
-public class ExciteParser {
+public class ExciteParser implements Parser{
     private static final String selector = "div.story";
     private int docnum;
 
@@ -22,8 +20,7 @@ public class ExciteParser {
         docnum = 0;
     }
 
-    public ArrayList<String> ParsePage(URLWrapper page) {
-
+    public void parsePage(URLWrapper page) {
         try {
             System.out.println(page.getFullURL());
             Document doc = Jsoup.connect(page.getFullURL()).get();
@@ -43,6 +40,5 @@ public class ExciteParser {
             System.out.println("Failed to fetch "+page.getFullURL());
             e.printStackTrace();
         }
-        return new ArrayList<String>();
     }
 }

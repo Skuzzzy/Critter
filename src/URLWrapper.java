@@ -29,10 +29,6 @@ public class URLWrapper {
 
     }
 
-    public String getArticleInfoString(){
-        return javaURL.getPath().replace("/News/","").replace("/","-").replace(".html","");
-    }
-
     public String getFullURL() {
         return javaURL.getProtocol()+"://"+javaURL.getHost()+javaURL.getPath();
     }
